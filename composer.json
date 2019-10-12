@@ -1,0 +1,24 @@
+{
+    "name": "alexandr/taskbook",
+    "authors": [
+        {
+            "name": "Alexandr Eliseev",
+            "email": "sansurf@inbox.ru"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "rm -rf public_html/css/bootstrap*",
+            "rm -rf public_html/js/bootstrap*",
+            "cp -R vendor/twbs/bootstrap/dist/ public_html"
+        ]
+    }
+}
