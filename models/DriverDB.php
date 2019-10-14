@@ -29,6 +29,16 @@ class DriverDB
     }
 
     /**
+     * Возвращает идентификатор соединения с БД (необходим для модели Users)
+     *
+     * @return false|\mysqli
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
      * Запрос на выборку данных из БД
      *
      * @param string $sql

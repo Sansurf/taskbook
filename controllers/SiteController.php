@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Users;
 use app\models\DriverDB;
 
 class SiteController extends Controller
@@ -35,8 +36,7 @@ class SiteController extends Controller
         $this->title .= "::Добавление новой задачи";
         $message = '';
 
-        if (isset($_POST['userName']))
-        {
+        if (!empty($_POST)) {
             $name = trim($_POST['userName']);
             $email = trim($_POST['email']);
 
@@ -60,6 +60,17 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        return $this->render('site-login', []);
+        $model = Users::getInstance();
+        $message = '';
+
+        if (!empty($_POST)) {
+            if ($model->Login($_POST['login'], $_POST['password'])) {
+                header('Location: index.php?controller=admin');
+            } else {
+                $message = 'Incorrect username or password';
+            }
+        }
+
+        return $this->render('site-login', ['message' => $message]);
     }
 }
