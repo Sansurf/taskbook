@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+require "../config/db.php";
+
 /**
  * Модель для взаимодействий с базой данных.
  * Модель обеспечивает единственное подключение к БД в момент времени
@@ -17,7 +19,7 @@ class DriverDB
             or die(mysqli_error($this->link));
     }
 
-    private static function getInstance()
+    public static function getInstance()
     {
         if (self::$instance == null) {
             self::$instance = new DriverDB();
@@ -39,8 +41,8 @@ class DriverDB
 
         $rows = [];
         $count = mysqli_num_rows($result);
-        for ($i = 0; $i <= $count; $i++) {
-            $rows = mysqli_fetch_assoc($result);
+        for ($i = 0; $i < $count; $i++) {
+            $rows[] = mysqli_fetch_assoc($result);
         }
 
         return $rows;
@@ -69,7 +71,7 @@ class DriverDB
         $columnsStr = implode(',', $columns);
         $valuesStr = implode(',', $values);
 
-        $sql = "INSERT INTO $table ($columnsStr) VALUES ($valuesStr)";
+        $sql = "INSERT INTO $table ($columnsStr) VALUES ($valuesStr);";
         $result = mysqli_query($this->link, $sql);
         if (!$result) die(mysqli_error($this->link));
 

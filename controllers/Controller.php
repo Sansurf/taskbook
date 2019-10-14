@@ -8,19 +8,19 @@ namespace app\controllers;
 class Controller
 {
     // метатеги
-    public $title = "Задачник";
+    public $title = "Taskbook";
     public $description;
 
     /**
      * Контент для вставки в базовый шаблон
      *
-     * @param string $view  Путь до файла
-     * @param array $params Передаваемые параметры
+     * @param string $view Название файла
+     * @param array $vars Переменные для шаблона
      * @return bool
      */
-    public function render($view, $params = [])
+    public function render($view, $vars = [])
     {
-        $content = $this->template($view, $params);
+        $content = $this->template("../views/$view.php", $vars);
         if ($this->renderLayout($content)) return true;
 
         return false;
@@ -34,7 +34,11 @@ class Controller
      */
     private function renderLayout($content)
     {
-        $vars = array('title' => $this->title, 'description' => $this->description, 'content'=>$content);
+        $vars = array(
+            'title' => $this->title,
+            'description' => $this->description,
+            'content' => $content
+        );
         if ($output = $this->template('../views/layout/main.php', $vars)) {
             echo $output;
             return true;
@@ -45,11 +49,11 @@ class Controller
     /**
      * Генератор HTML
      *
-     * @param $fileName
+     * @param $view
      * @param array $vars
      * @return string
      */
-    protected function template($fileName, $vars = [])
+    protected function template($view, $vars = [])
     {
         // Установка переменных для шаблона.
         foreach ($vars as $k => $v)
@@ -59,7 +63,7 @@ class Controller
 
         // Генерация HTML в строку.
         ob_start();
-        include "$fileName";
+        include "$view";
         return ob_get_clean();
     }
 }
