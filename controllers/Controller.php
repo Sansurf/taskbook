@@ -10,6 +10,7 @@ class Controller
     // метатеги
     public $title = "Taskbook";
     public $description;
+    public $breadcrumbs = ['Home' => ['title' => 'Home', 'url' => '/']];
 
     /**
      * Контент для вставки в базовый шаблон
@@ -37,6 +38,7 @@ class Controller
         $vars = array(
             'title' => $this->title,
             'description' => $this->description,
+            'breadcrumbs' => $this->breadcrumbs,
             'content' => $content
         );
         if ($output = $this->template('../views/layout/main.php', $vars)) {

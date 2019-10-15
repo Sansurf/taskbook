@@ -34,6 +34,7 @@ class SiteController extends Controller
     public function actionAdd()
     {
         $this->title .= "::Add new task";
+        $this->breadcrumbs['Add'] = ['title' => 'Add', 'url' => '?action=add'];
         $message = '';
 
         if (!empty($_POST)) {
@@ -60,6 +61,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->title .= "::Login";
+        $this->breadcrumbs['Login'] = ['title' => 'Login', 'url' => '?action=login'];
         $model = Users::getInstance();
         $message = '';
 
