@@ -6,9 +6,9 @@
         <th scope="col">Task #</th>
         <th scope="col">Title</th>
         <th scope="col">Text</th>
-        <th scope="col">Status</th>
-        <th scope="col">User Name</th>
-        <th scope="col">User Email</th>
+        <th scope="col"><a href="?orderby=status">Status</a></th>
+        <th scope="col"><a href="?orderby=name">User Name</a></th>
+        <th scope="col"><a href="?orderby=email">User Email</a></th>
     </tr>
     </thead>
     <tbody>

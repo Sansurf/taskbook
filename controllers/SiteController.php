@@ -17,7 +17,14 @@ class SiteController extends Controller
         $vars = [];
 
         $db = DriverDB::getInstance();
-        $query = $db->select("SELECT * FROM `user`,`task` WHERE `task`.`user_id` = `user`.`id`");
+        if (isset($_GET['orderby'])) {
+            $query = $db->select("SELECT * FROM `user`,`task` 
+                WHERE `task`.`user_id` = `user`.`id` 
+                ORDER BY {$_GET['orderby']}"
+            );
+        } else {
+            $query = $db->select("SELECT * FROM `user`,`task` WHERE `task`.`user_id` = `user`.`id`");
+        }
 
         foreach ($query as $key => $value) {
             $vars[$key] = $value;
