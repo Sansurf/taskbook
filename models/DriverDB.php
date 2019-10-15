@@ -92,7 +92,7 @@ class DriverDB
      * Обновление записи в БД
      *
      * @param string $table
-     * @param array $params Массив значений для вставки в БД в виде 'поле'=>'значение'
+     * @param array $params Массив значений для вставки в БД в виде ['поле'=>'значение', ...]
      * @param string $where
      * @return int
      */
@@ -109,25 +109,9 @@ class DriverDB
             }
         }
         $setStr = implode(',', $set);
-
         $sql = sprintf("UPDATE %s SET %s WHERE %s", $table, $setStr, $where);
         $result = mysqli_query($this->link, $sql);
-        if (!$result) die(mysqli_error($this->link));
 
-        return mysqli_affected_rows($this->link);
-    }
-
-    /**
-     * Удаление записи из БД
-     *
-     * @param string $table
-     * @param string $where
-     * @return int
-     */
-    public function delete($table, $where)
-    {
-        $sql = sprintf("DELETE FROM %s WHERE %s", $table, $where);
-        $result = mysqli_query($this->link, $sql);
         if (!$result) die(mysqli_error($this->link));
 
         return mysqli_affected_rows($this->link);

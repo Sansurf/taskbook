@@ -33,7 +33,7 @@ class SiteController extends Controller
      */
     public function actionAdd()
     {
-        $this->title .= "::Добавление новой задачи";
+        $this->title .= "::Add new task";
         $message = '';
 
         if (!empty($_POST)) {
@@ -44,8 +44,8 @@ class SiteController extends Controller
             $text = trim($_POST['text']);
 
             $db = DriverDB::getInstance();
-            $userId = $db->Insert('user', ['name' => $name, 'email' => $email]);
-            $db->Insert('task', ['user_id' => $userId, 'title' => $title, 'content' => $text]);
+            $userId = $db->insert('user', ['name' => $name, 'email' => $email]);
+            $db->insert('task', ['user_id' => $userId, 'title' => $title, 'content' => $text]);
 
             $message = "Task sent";
         }

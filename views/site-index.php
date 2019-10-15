@@ -17,7 +17,7 @@
         <th scope="row"><?= $array['id'] ?></th>
         <td><?= $array['title'] ?></td>
         <td><?= $array['content'] ?></td>
-        <td><?= (!$array['status']) ? 'New' : 'Done' ?></td>
+        <td><?= (!$array['status']) ? 'Done' : 'Edited by admin' ?></td>
         <td><?= $array['name'] ?></td>
         <td><?= $array['email'] ?></td>
     </tr>
