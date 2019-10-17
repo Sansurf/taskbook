@@ -89,7 +89,7 @@ class SiteController extends Controller
 
         if (!empty($_POST)) {
             if ($model->Login($_POST['login'], $_POST['password'])) {
-                header('Location: admin-site-index.php?controller=Admin');
+                header('Location: ?controller=Admin');
             } else {
                 $message = 'Incorrect username or password';
             }

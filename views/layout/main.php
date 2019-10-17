@@ -25,12 +25,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                 </li>
+                <?php if (isset($_GET['controller']) && $_GET['controller'] == 'Admin'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?controller=Admin&action=logout">Logout</a>
+                </li>
+                <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link" href="?action=add">Add task</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?action=login">Login</a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

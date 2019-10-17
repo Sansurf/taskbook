@@ -65,9 +65,10 @@ class Users
 		$sql = "SELECT * FROM `user` WHERE `name` = '%s'";
 		$query = sprintf($sql, mysqli_real_escape_string($this->db->getLink(), $login));
 		$result = $this->db->select($query);
+        $row = mysqli_fetch_assoc($result);
 
-		if (!$result) return false;
+		if (!$row) return false;
 
-		return $result[0];
+		return $row;
 	}
 }

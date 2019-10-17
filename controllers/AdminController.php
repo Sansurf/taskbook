@@ -47,9 +47,14 @@ class AdminController extends Controller
             $text = trim($_POST['text']);
             $sql = $db->update('task', ['content' => $text, 'status' => 1], "id={$_GET['id']}");
 
-            if ($sql) header('Location: admin-site-index.php?controller=Admin');
+            if ($sql) header('Location: ?controller=Admin');
         }
 
         $this->render('admin-edit', $vars);
+    }
+
+    public function actionLogout()
+    {
+        header('Location: /');
     }
 }
