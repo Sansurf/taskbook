@@ -42,20 +42,14 @@ class DriverDB
      * Запрос на выборку данных из БД
      *
      * @param string $sql
-     * @return array|string[]|null
+     * @return bool|\mysqli_result
      */
     public function select($sql)
     {
         $result = mysqli_query($this->link, $sql);
         if (!$result) die(mysqli_error($this->link));
 
-        $rows = [];
-        $count = mysqli_num_rows($result);
-        for ($i = 0; $i < $count; $i++) {
-            $rows[] = mysqli_fetch_assoc($result);
-        }
-
-        return $rows;
+        return $result;
     }
 
     /**

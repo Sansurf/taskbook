@@ -14,7 +14,7 @@
         <tr>
             <th scope="row"><?= $array['id'] ?></th>
             <td><?= $array['title'] ?></td>
-            <td><a href="?controller=admin&action=edit&id=<?= $array['id'] ?>"><?= $array['content'] ?></a></td>
+            <td><a href="?controller=Admin&action=edit&id=<?= $array['id'] ?>"><?= $array['content'] ?></a></td>
             <td><?= (!$array['status']) ? 'Done' : 'Edited by admin' ?></td>
         </tr>
     <?php endforeach; ?>

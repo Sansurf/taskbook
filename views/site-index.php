@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($vars as $array): ?>
+    <?php foreach ($data['records'] as $array): ?>
     <tr>
         <th scope="row"><?= $array['id'] ?></th>
         <td><?= $array['title'] ?></td>
@@ -25,3 +25,4 @@
     </tbody>
 </table>
 
+<?= $data['page_links'] ?>

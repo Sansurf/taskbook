@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
         <label for="text">Text</label>
-        <textarea class="form-control" id="text" name="text" rows="3" placeholder="Put here text of the task"></textarea>
+        <textarea class="form-control" id="text" name="text" rows="3" placeholder="Put the text of your task here"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

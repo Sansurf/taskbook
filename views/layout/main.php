@@ -48,8 +48,8 @@
     <?= $content ?>
 
 </div>
-
 <script src="js/bootstrap.min.js"></script>
+<script src="js/pagination.js"></script>
 </body>
 
 </html>

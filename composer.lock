@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6abb21d30a552c7beb0c58144d561a8d",
+    "content-hash": "daf942af9de72aa5573db976b09a6d9e",
     "packages": [
         {
             "name": "twbs/bootstrap",
@@ -56,6 +56,63 @@
                 "web"
             ],
             "time": "2019-02-13T16:01:40+00:00"
+        },
+        {
+            "name": "voku/pagination",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/pagination.git",
+                "reference": "bb44b5d0814b10b5efcde5542993c3ce5065fe5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/pagination/zipball/bb44b5d0814b10b5efcde5542993c3ce5065fe5d",
+                "reference": "bb44b5d0814b10b5efcde5542993c3ce5065fe5d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0|~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "voku\\helper\\": "src/voku/helper/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Moelleken",
+                    "email": "lars@moelleken.org",
+                    "homepage": "http://www.moelleken.org/",
+                    "role": "Fork-Maintainer"
+                },
+                {
+                    "name": "David Carr",
+                    "email": "dave@daveismyname.com",
+                    "homepage": "http://www.daveismyname.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pagination, without a database dependency",
+            "keywords": [
+                "pager",
+                "pagination",
+                "paginator"
+            ],
+            "time": "2018-10-07T01:22:14+00:00"
         }
     ],
     "packages-dev": [],

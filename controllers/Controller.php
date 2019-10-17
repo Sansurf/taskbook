@@ -41,10 +41,12 @@ class Controller
             'breadcrumbs' => $this->breadcrumbs,
             'content' => $content
         );
+
         if ($output = $this->template('../views/layout/main.php', $vars)) {
             echo $output;
             return true;
         }
+
         return false;
     }
 
@@ -58,8 +60,7 @@ class Controller
     protected function template($view, $vars = [])
     {
         // Установка переменных для шаблона.
-        foreach ($vars as $k => $v)
-        {
+        foreach ($vars as $k => $v) {
             $$k = $v;
         }
 

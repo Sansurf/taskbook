@@ -9,7 +9,7 @@ class AdminController extends Controller
     public function actionIndex()
     {
         $this->title .= "::Admin page";
-        $this->breadcrumbs['Admin'] = ['title' => 'Admin', 'url' => '?controller=admin'];
+        $this->breadcrumbs['Admin'] = ['title' => 'Admin', 'url' => '?controller=Admin'];
 
         $db = DriverDB::getInstance();
         $query = $db->select("SELECT * FROM `user`,`task` WHERE `task`.`user_id` = `user`.`id`");
@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function actionEdit()
     {
         $this->title .= "::Admin edit page";
-        $this->breadcrumbs['Admin-edit'] = ['title' => 'Admin-edit', 'url' => '?controller=admin&action=edit'];
+        $this->breadcrumbs['Admin-edit'] = ['title' => 'Admin-edit', 'url' => '?controller=Admin&action=edit'];
 
         $db = DriverDB::getInstance();
         $vars = [];
@@ -47,7 +47,7 @@ class AdminController extends Controller
             $text = trim($_POST['text']);
             $sql = $db->update('task', ['content' => $text, 'status' => 1], "id={$_GET['id']}");
 
-            if ($sql) header('Location: index.php?controller=admin');
+            if ($sql) header('Location: admin-site-index.php?controller=Admin');
         }
 
         $this->render('admin-edit', $vars);

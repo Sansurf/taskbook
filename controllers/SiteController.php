@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Users;
 use app\models\DriverDB;
+use voku\helper\Paginator;
 
 class SiteController extends Controller
 {
@@ -14,23 +15,36 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $vars = [];
+        $per_page = 3;      // количество выводимых записей на страницу
 
         $db = DriverDB::getInstance();
-        if (isset($_GET['orderby'])) {
-            $query = $db->select("SELECT * FROM `user`,`task` 
+        $pages = new Paginator($per_page, 'page');
+
+        if (isset($_GET['orderby'])) {      // сортировка по полю
+            $query = $db->select("
+                SELECT * FROM `user`,`task` 
                 WHERE `task`.`user_id` = `user`.`id` 
                 ORDER BY {$_GET['orderby']}"
+                . $pages->get_limit()
             );
-        } else {
-            $query = $db->select("SELECT * FROM `user`,`task` WHERE `task`.`user_id` = `user`.`id`");
+        } else {                            // без сортировки
+            $query = $db->select("
+                SELECT * FROM `user`,`task` 
+                WHERE `task`.`user_id` = `user`.`id`"
+                . $pages->get_limit()
+            );
         }
 
-        foreach ($query as $key => $value) {
-            $vars[$key] = $value;
-        }
+        // подсчет общего количества записей в БД
+        $totalItems = mysqli_num_rows($db->select("SELECT `id` FROM `task`"));
+        $pages->set_total($totalItems);
 
-        return $this->render('site-index', $vars);
+        // массив с записями для вывода на страницу
+        $data['records'] = $query;
+        // пагинация
+        $data['page_links'] = $pages->page_links('?' . http_build_query($_GET) . '&');
+
+        return $this->render('site-index', ['data' => $data]);
     }
 
     /**
@@ -75,7 +89,7 @@ class SiteController extends Controller
 
         if (!empty($_POST)) {
             if ($model->Login($_POST['login'], $_POST['password'])) {
-                header('Location: index.php?controller=admin');
+                header('Location: admin-site-index.php?controller=Admin');
             } else {
                 $message = 'Incorrect username or password';
             }
